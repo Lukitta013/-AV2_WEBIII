@@ -1,0 +1,22 @@
+{
+  "nome": "João da Silva",
+  "nomeSocial": "João",
+  "dataNascimento": "2000-05-15T00:00:00.000Z",
+  "dataCadastro": "2024-03-27T00:00:00.000Z",
+  "endereco": {
+    "estado": "SP",
+    "cidade": "São Paulo",
+    "bairro": "Centro",
+    "rua": "Av Paulista",
+    "numero": "1000",
+    "codigoPostal": "01310100",
+    "informacoesAdicionais": "Apto 42"
+  },
+  "documentos": [
+    { "tipo": "CPF", "numero": "12345678901" },
+    { "tipo": "RG", "numero": "987654321" }
+  ],
+  "telefones": [
+    { "ddd": "11", "numero": "987654321" }
+  ]
+}
