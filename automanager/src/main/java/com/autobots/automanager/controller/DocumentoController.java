@@ -41,5 +41,46 @@ public class DocumentoController {
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
         excluirDoc.excluirDocumento(id);
         return ResponseEntity.noContent().build();
+        //Em vez de você ficar pensando nele
+        //Em vez de você viver chorando por ele
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pra ele, não chore por ele
+        //
+        //Se lembre que eu há muito tempo te amo
+        //Te amo, te amo
+        //Quero fazer você feliz
+        //Vamos pegar o primeiro avião
+        //Com destino à felicidade
+        //A felicidade pra mim é você
+        //
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pra ele, não chore por ele
+        //
+        //Se lembre que eu há muito tempo te amo
+        //Te amo, te amo
+        //Quero fazer você feliz
+        //Vamos pegar o primeiro avião
+        //Com destino à felicidade
+        //A felicidade pra mim é você
+        //
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pra ele, não chore por ele
+        //
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pense em mim, chore por mim
+        //Liga pra mim, não, não liga pra ele
+        //Pra ele, não chore por ele
+        //
+        //Pense em mim, chore por mim
     }
 }
