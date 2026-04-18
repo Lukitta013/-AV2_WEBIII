@@ -19,18 +19,16 @@ public class AlterarEndereco {
     @Autowired
     EnderecoMapper enderecoMapper;
 
-    public EnderecoResponseDTO alterarEndereco(Long id, EnderecoRequestDTO enderecoRequestDTO){
+    public EnderecoResponseDTO alterarEndereco(Long id, EnderecoRequestDTO dto) {
         Endereco endereco = enderecoRepositorio.findById(id)
-                .orElseThrow(()-> new RecursoNaoEncontradoException("Endereço", id));
-        endereco.setEstado(enderecoRequestDTO.getEstado());
-        endereco.setCidade(enderecoRequestDTO.getCidade());
-        endereco.setBairro(enderecoRequestDTO.getBairro());
-        endereco.setRua(enderecoRequestDTO.getRua());
-        endereco.setNumero(endereco.getNumero());
-        endereco.setCodigoPostal(enderecoRequestDTO.getCodigoPostal());
-        endereco.setInformacoesAdicionais(enderecoRequestDTO.getInformacoesAdicionais());
-
-        Endereco atualizado = enderecoRepositorio.save(endereco);
-        return enderecoMapper.toDTO(atualizado);
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Endereço", id));
+        endereco.setEstado(dto.getEstado());
+        endereco.setCidade(dto.getCidade());
+        endereco.setBairro(dto.getBairro());
+        endereco.setRua(dto.getRua());
+        endereco.setNumero(dto.getNumero()); // estava pegando do próprio endereco!
+        endereco.setCodigoPostal(dto.getCodigoPostal());
+        endereco.setInformacoesAdicionais(dto.getInformacoesAdicionais());
+        return enderecoMapper.toDTO(enderecoRepositorio.save(endereco));
     }
 }

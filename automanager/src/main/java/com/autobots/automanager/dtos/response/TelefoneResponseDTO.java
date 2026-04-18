@@ -3,9 +3,10 @@ package com.autobots.automanager.dtos.response;
 import lombok.Data;
 
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
-public class TelefoneResponseDTO {
+public class TelefoneResponseDTO extends RepresentationModel<TelefoneResponseDTO> {
 
     private Long id;
 

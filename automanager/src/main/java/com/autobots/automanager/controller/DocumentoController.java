@@ -2,8 +2,6 @@ package com.autobots.automanager.controller;
 
 import com.autobots.automanager.dtos.request.DocumentoRequestDTO;
 import com.autobots.automanager.dtos.response.DocumentoResponseDTO;
-import com.autobots.automanager.model.entity.Documento;
-import com.autobots.automanager.repository.DocumentoRepositorio;
 import com.autobots.automanager.services.Documento.AlterarDoc;
 import com.autobots.automanager.services.Documento.CadastrarDoc;
 import com.autobots.automanager.services.Documento.ExcluirDoc;
@@ -19,36 +17,28 @@ import org.springframework.web.bind.annotation.*;
 public class DocumentoController {
     @Autowired
     private CadastrarDoc cadastrarDoc;
+    @Autowired private SelecionarDoc selecionarDoc;
+    @Autowired private AlterarDoc alterarDoc;
+    @Autowired private ExcluirDoc excluirDoc;
 
-    @Autowired
-    private SelecionarDoc selecionarDoc;
-
-    @Autowired
-    private AlterarDoc alterarDoc;
-
-    @Autowired
-    private ExcluirDoc excluirDoc;
-
-    @PostMapping("/cadastrar/documento")
-    public ResponseEntity<DocumentoResponseDTO> cadastrarDocumento(@RequestBody DocumentoRequestDTO documentoRequestDTO){
-        DocumentoResponseDTO resposta = cadastrarDoc.criarDocumento(documentoRequestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
+    @PostMapping
+    public ResponseEntity<DocumentoResponseDTO> cadastrar(@RequestBody @Valid DocumentoRequestDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(cadastrarDoc.criarDocumento(dto));
     }
 
-    @GetMapping("/pegar/docuumento")
-    public ResponseEntity<DocumentoResponseDTO> pegarDocumento(@RequestParam("id") Long id){
-        DocumentoResponseDTO resposta = selecionarDoc.selecionarDocumento(id);
-        return new  ResponseEntity<>(resposta, HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<DocumentoResponseDTO> pegar(@PathVariable Long id) {
+        return ResponseEntity.ok(selecionarDoc.selecionarDocumento(id));
     }
 
-    @PutMapping("/atualizar/documento")
-    public ResponseEntity<DocumentoResponseDTO>  atualizarDocumento(@RequestParam(value = "id") Long id, @RequestBody @Valid DocumentoRequestDTO documentoRequestDTO){
-        DocumentoResponseDTO resposta = alterarDoc.alterarDocumento(id, documentoRequestDTO);
-        return new ResponseEntity<>(resposta, HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<DocumentoResponseDTO> atualizar(@PathVariable Long id,
+                                                          @RequestBody @Valid DocumentoRequestDTO dto) {
+        return ResponseEntity.ok(alterarDoc.alterarDocumento(id, dto));
     }
 
-    @DeleteMapping("/excluir/documento")
-    public ResponseEntity<Void> excluirDocumento(@RequestParam(value = "id") Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
         excluirDoc.excluirDocumento(id);
         return ResponseEntity.noContent().build();
     }

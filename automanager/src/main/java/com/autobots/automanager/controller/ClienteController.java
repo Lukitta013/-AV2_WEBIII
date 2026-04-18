@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -31,26 +33,32 @@ public class ClienteController {
     @Autowired
     private ExcluirCLiente excluirCliente;
 
-    @PostMapping("/cadastrar/cliente")
+    @PostMapping
     public ResponseEntity<ClienteResponseDTO> criar(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO){
     ClienteResponseDTO resposta = cadastraCliente.criarCliente(clienteRequestDTO);
     return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
     }
 
-    @GetMapping("/pegar/cliente")
-    public ResponseEntity<ClienteResponseDTO> pegarCliente(@RequestParam(value = "id") Long id){
-    ClienteResponseDTO resposta = selecionarCliente.selecionarCliente(id);
-    return new ResponseEntity<>(resposta, HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> pegarCliente(@PathVariable Long id) {
+        ClienteResponseDTO resposta = selecionarCliente.selecionarCliente(id);
+        return ResponseEntity.ok(resposta);
     }
 
-    @PutMapping("/atualizar/cliente")
-    public ResponseEntity<ClienteResponseDTO> atualizarCliente(@RequestParam(value = "id") Long id, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO){
+    @GetMapping
+    public ResponseEntity<List<ClienteResponseDTO>> listarClientes() {
+        List<ClienteResponseDTO> resposta = selecionarCliente.listarClientes();
+        return ResponseEntity.ok(resposta);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> atualizarCliente(@PathVariable Long id, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO){
         ClienteResponseDTO resposta = alterarCliente.alterarCliente(id, clienteRequestDTO);
         return new ResponseEntity<>(resposta, HttpStatus.OK);
     }
 
-    @DeleteMapping("/excluir/cliente")
-    public ResponseEntity<Void> excluirCliente(@RequestParam(value = "id") Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirCliente(@PathVariable Long id){
         excluirCliente.excluirCliente(id);
         return ResponseEntity.noContent().build();
     }

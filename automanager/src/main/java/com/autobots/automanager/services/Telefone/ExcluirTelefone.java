@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ExcluirTelefone {
-    @Autowired
-    private TelefoneRepositorio telefoneRepositorio;
+    @Autowired private TelefoneRepositorio telefoneRepositorio;
 
-    public void excluirTelefone(Long id){
+    public void excluirTelefone(Long id) {
         Telefone telefone = telefoneRepositorio.findById(id)
-                .orElseThrow(()-> new RecursoNaoEncontradoException("Teleone", id));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Telefone", id)); // era "Teleone"
         telefoneRepositorio.delete(telefone);
     }
 }

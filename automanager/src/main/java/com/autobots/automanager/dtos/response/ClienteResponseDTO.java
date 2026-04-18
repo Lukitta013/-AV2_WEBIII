@@ -7,11 +7,13 @@ import lombok.Data;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class ClienteResponseDTO {
+public class ClienteResponseDTO extends RepresentationModel<ClienteResponseDTO> {
     private Long id;
 
     private String nome;

@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class ExcluirEndereco {
-    @Autowired
-    private EnderecoRepositorio enderecoRepositorio;
+    @Autowired private EnderecoRepositorio enderecoRepositorio;
 
     public void excluirEndereco(Long id) {
         Endereco endereco = enderecoRepositorio.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente", id));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Endereço", id)); // era "Cliente"
         enderecoRepositorio.delete(endereco);
     }
 }

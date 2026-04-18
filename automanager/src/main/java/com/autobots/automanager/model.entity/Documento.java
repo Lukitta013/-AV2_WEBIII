@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -15,7 +16,9 @@ public class Documento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
+	@NotBlank(message = "Tipo é obrigatório")
 	private String tipo;
 	@Column(unique = true)
+	@NotBlank(message = "Número é obrigatório")
 	private String numero;
 }
